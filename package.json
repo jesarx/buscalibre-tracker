@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.4",
+    "axios": "^1.4.0",
+    "chart.js": "^4.3.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongodb": "^5.7.0",
+    "node-cron": "^3.0.2",
+    "nodemon": "^3.0.1",
+    "tailwindcss": "^3.3.3"
+  },
+  "name": "buscalibre-price-tracker",
+  "version": "1.0.0",
+  "description": "An app that tracks the prices of books in BuscaLibre over the time.",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "jesarx",
+  "license": "ISC"
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>BuscaLibre price tracker</title>
+   <link rel="stylesheet" href="output.css">
+   <script type="module" src="main.js" defer></script>
+</head>
+
+<body>
+   <div class="flex flex-col gap-0 h-screen">
+      <!-- LINK FORM -->
+      <div id="link" class="flex justify-center items-center p-3 h-44 text-sm text-white bg-slate-800">
+         <form action="" class="flex flex-col space-y-3 w-2/4 text-center md:w-80" id="blForm">
+            <label for="link" class="text-lg font-bold">Ingresa un link de Buscalibre...</label>
+            <input type="url" name="link" id="" placeholder="https://www.buscalibre.com.mx/libro-..." class="px-2 h-8 rounded-md bg-slate-200">
+            <button type="submit" class="py-2 mx-0 rounded-md duration-300 bg-slate-500 hover:bg-slate-600">Añadir libro</button>
+         </form>
+      </div>
+      <!-- /LINK FORM -->
+
+      <div class="flex overflow-auto flex-col gap-4 items-center py-3 h-full xl:flex-wrap bg-slate-300">
+         
+         <!-- LIST OF CARDS -->
+         <% for (const libro of libros) { %>
+            <!-- CARD -->
+            <div id="singleCard" class="flex flex-col items-strech md:flex-row rounded-md bg-slate-400 w-3/4 md:w-[40rem]">
+               <img src="<%= libro.image %>" alt="<%= libro.titulo %>" class="object-contain self-center m-2 h-48 rounded-md duration-300 md:h-64 hover:scale-105">
+               <!-- TEXT AND GRAPH -->
+               <div class="flex flex-col justify-between grow">
+                  <div class="flex flex-col justify-between items-center mx-2 my-1 md:flex-row md:items-start">
+                     <a href="<%= libro.link %>" target="_blank" rel="noopener noreferrer"><h1 class="text-lg font-bold underline hover:font-black"><%= libro.title %></h1></a>
+                     <h2 class="text-lg font-semibold">$ <%= libro.prices[libro.prices.length - 1].price %></h2>
+                  </div>
+                  <!-- GRAPH -->
+                  <div class="p-2 mx-auto w-full">
+                     <canvas id="chart<%= libro._id %>"></canvas>
+                  </div>
+                  <!-- / GRAPH -->
+               </div>
+               <!-- / TEXT AND GRAPH -->
+            </div>
+            <!-- / CARD -->
+         <% } %>
+         <!-- / LIST OF CARDS -->
+
+      </div>
+      
+      <!-- FOOTER -->
+      <div id="footer" class="flex flex-col justify-center items-center p-3 text-xs leading-relaxed bg-slate-600 text-slate-300">
+         <p><a href="" class="font-bold text-slate-200">buscalibre-tracker</a> [v. 1.0] es desarrollado por <a href="https://jesarx.com" class="font-bold text-slate-200">jesarx</a></p>
+         <p>bajo la licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" class="font-bold text-slate-200">CC0 1.0 Universal</a></p>
+      </div>
+      <!-- / FOOTER -->
+
+   </div>
+   
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+   <script>
+
+      <% for (const libro of libros) { %>
+         const ctx<%= libro._id %> = document.getElementById('chart<%= libro._id %>');
+         
+         <% libro.prices.sort((a, b)=> b.date + a.date); %>
+         let unix<%= libro._id %> = <%= JSON.stringify(libro.prices.map(field => field.date)); %>
+         const human<%= libro._id %> = unix<%= libro._id %>.map(timestamp => {
+            const date = new Date(timestamp);
+            const mxDate = date.toLocaleDateString("es-MX");
+            return mxDate.slice(0, -5);
+         });
+
+            new Chart(ctx<%= libro._id %>, {
+               type: 'line',
+               data: {
+                  labels: human<%= libro._id %>,
+                  datasets: [{
+                     data: <%= JSON.stringify(libro.prices.map(field => parseFloat(field.price))) %>,
+                     borderWidth: 2,
+                     borderColor: '#f8fafc'
+                  }]
+               },
+               options: {
+                  scales: {
+                     x: {
+                        ticks: {
+                           color: '#f8fafc'
+                        }
+                     }
+                  },
+                  plugins: {
+                     legend: {
+                        display: false // Hide the legend entry
+                     }
+                  }
+               }
+            });
+            
+      <% } %>
+
+
+    </script>
+     
+</body>
+</html>
