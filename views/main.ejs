@@ -6,16 +6,15 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>BuscaLibre price tracker</title>
    <link rel="stylesheet" href="output.css">
-   <script type="module" src="main.js" defer></script>
 </head>
 
 <body>
    <div class="flex flex-col gap-0 h-screen">
       <!-- LINK FORM -->
       <div id="link" class="flex justify-center items-center p-3 h-44 text-sm text-white bg-slate-800">
-         <form action="" class="flex flex-col space-y-3 w-2/4 text-center md:w-80" id="blForm">
+         <form class="flex flex-col space-y-3 w-2/4 text-center md:w-80" id="blForm" action="/addlink" method="POST">
             <label for="link" class="text-lg font-bold">Ingresa un link de Buscalibre...</label>
-            <input type="url" name="link" id="" placeholder="https://www.buscalibre.com.mx/libro-..." class="px-2 h-8 rounded-md bg-slate-200">
+            <input type="text" name="link" id="link" placeholder="https://www.buscalibre.com.mx/libro-..." class="px-2 h-8 text-black rounded-md bg-slate-200">
             <button type="submit" class="py-2 mx-0 rounded-md duration-300 bg-slate-500 hover:bg-slate-600">Añadir libro</button>
          </form>
       </div>
@@ -86,7 +85,8 @@
                   scales: {
                      x: {
                         ticks: {
-                           color: '#f8fafc'
+                           color: '#f8fafc',
+                           minRotation: 40
                         }
                      }
                   },

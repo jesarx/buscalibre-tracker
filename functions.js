@@ -15,21 +15,28 @@ async function fetchPrice(link) {
       }
 
    } catch (error) {
-      console.error('Error fetching price:', error);
+      console.error('Error al obtener precio del libro:', error);
       return null;
    }
 };
 
-async function fetchBookData(link) {2
+async function fetchBookData(link) {
    try {
       const response = await axios.get(link);
       const html = response.data;
 
       const regexTitulo = /<p\s+class="tituloProducto">([^<]+)<\/p>/;
-      const regexImage = /https:\/\/images\.cdn3\.buscalibre\.com\/[^'"\s]+\.jpg/g;
+      const regexImage = /https:\/\/images\.cdn\d+\.buscalibre\.com\/[^'"\s]+\.jpg/g;;
+
 
       const titulo = html.match(regexTitulo);
       const imagen = html.match(regexImage);
+
+      if (!titulo) {
+         throw new Error('Error al obtener el título del libro');
+      } else if (!imagen) {
+         throw new Error('Error al obtener la imagen del libro');
+      }
 
       const dataArray = {
          titulo: titulo[1],
@@ -41,7 +48,7 @@ async function fetchBookData(link) {2
       }
 
    } catch (error) {
-      console.error('Error fetching price:', error);
+      console.error('Error al obtener información del libro:', error);
       return null;
    }
 };

@@ -29,6 +29,7 @@ db.connectToDatabase().then(function () {
    app.listen(3000);
    console.log('App listening on port 3000!')
 
+   // DAILY PRICE FETCHER FUNCTION
    async function priceFetchStore () {
       try {
          const getData = await db.getDb().collection('links').find().toArray();
@@ -52,23 +53,16 @@ db.connectToDatabase().then(function () {
                   }
                }
             );
-
-            console.log(updatePrice);
          }
-
       } catch (error) {
-         console.error('Error fetching price:', error);
+         console.error('Error al obtener precio actualizado con cron:', error);
          return null;
       }
    
    }
-
-   // priceFetchStore();
-   // cron.schedule('0 2 * * *', fetchAndStoreText);
+   // FETCH PRICE AT 2AM EVERY DAY
+   cron.schedule('0 2 * * *', priceFetchStore);
 });
-
-// DAILY PRICE FETCHER
-
 
 
 
