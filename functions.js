@@ -5,13 +5,15 @@ async function fetchPrice(link) {
       const response = await axios.get(link);
       const html = response.data;
 
-      const regex = /<span>\$ (\d+(\.\d+)?)<\/span>/;
+      const regex = /<span>\$ (\d{1,3}(?:,\d{3})*)(?:\.(\d+))?<\/span>/;
 
       const price = html.match(regex);
       const match = price[1];
+      const matchNoComa = match.replace(',', '');
+      console.log(matchNoComa);
 
-      if (match) {
-         return match;
+      if (matchNoComa) {
+         return matchNoComa;
       }
 
    } catch (error) {

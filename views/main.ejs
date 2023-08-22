@@ -11,11 +11,11 @@
 <body>
    <div class="flex flex-col gap-0 h-screen">
       <!-- LINK FORM -->
-      <div id="link" class="flex justify-center items-center p-3 h-44 text-sm text-white bg-slate-800">
-         <form class="flex flex-col space-y-3 w-2/4 text-center md:w-80" id="blForm" action="/addlink" method="POST">
-            <label for="link" class="text-lg font-bold">Ingresa un link de Buscalibre...</label>
-            <input type="text" name="link" id="link" placeholder="https://www.buscalibre.com.mx/libro-..." class="px-2 h-8 text-black rounded-md bg-slate-200">
-            <button type="submit" class="py-2 mx-0 rounded-md duration-300 bg-slate-500 hover:bg-slate-600">Añadir libro</button>
+      <div id="link" class="flex justify-center p-3 text-sm text-white bg-slate-800">
+         <form class="flex flex-row justify-center items-center space-x-3 w-2/4 text-center" id="blForm" action="/addlink" method="POST">
+            <label for="link" class="text-lg font-bold">Link de Buscalibre:</label>
+            <input type="text" name="link" id="link" placeholder="https://www.buscalibre.com.mx/libro-..." class="px-2 h-8 text-black rounded-md grow bg-slate-200">
+            <button type="submit" class="p-2 mx-0 rounded-md duration-300 bg-slate-500 hover:bg-slate-600">Añadir libro</button>
          </form>
       </div>
       <!-- /LINK FORM -->
@@ -40,7 +40,7 @@
                      <h2 class="text-lg font-semibold">$<%= libro.prices[libro.prices.length - 1].price %></h2>
                   </div>
                   <!-- GRAPH -->
-                  <div class="p-5 mx-auto w-full">
+                  <div class="p-2">
                      <canvas id="chart<%= libro._id %>"></canvas>
                   </div>
                   <!-- / GRAPH -->
@@ -54,7 +54,7 @@
       </div>
       
       <!-- FOOTER -->
-      <div id="footer" class="flex flex-col justify-center items-center p-3 text-xs leading-relaxed bg-slate-600 text-slate-300">
+      <div id="footer" class="flex flex-col justify-center items-center p-1 text-xs leading-relaxed bg-slate-600 text-slate-300">
          <p><a href="https://github.com/jesarx/buscalibre-tracker" class="font-bold text-slate-200">buscalibre-tracker</a> [v. 1.0] es desarrollado por <a href="https://jesarx.com" class="font-bold text-slate-200">jesarx</a></p>
          <p>bajo la licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/" class="font-bold text-slate-200">CC0 1.0 Universal</a></p>
       </div>
