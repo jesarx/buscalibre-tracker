@@ -29,8 +29,6 @@ router.post('/addlink', async function(req, res) {
    const tituloImagen = await f.fetchBookData(link);
    const price = await f.fetchPrice(link);
 
-
-
    const newRecord = {
       dateAdded: req.body.dateAdded,
       link: link,
@@ -47,6 +45,14 @@ router.post('/addlink', async function(req, res) {
    console.log(newRecord);
 
    await db.getDb().collection('links').insertOne(newRecord);
+   res.redirect('/');
+});
+
+router.get('/dellink/:id', async function(req, res) {
+   const id = req.params.id;
+   const objectId = new ObjectId(id);
+   await db.getDb().collection('links').deleteOne({_id: objectId});
+
    res.redirect('/');
 });
 
