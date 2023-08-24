@@ -3,7 +3,7 @@
 <%- include('includes/nav.ejs') %>
 
 <!-- MAIN CONTENT -->
-<div class="flex flex-col gap-4 items-center py-3 bg-slate-300">
+<div class="flex flex-col gap-4 items-center py-3 h-full bg-slate-300">
    
    <% if (inputData.hasError) { %>
       <p class="p-3 font-bold text-black bg-red-800 rounded-md"><%= inputData.message %></p>
@@ -15,16 +15,16 @@
 
          <!-- IMAGE AND DELETE BUTTON -->
          <div class="flex flex-col gap-0 justify-center">
-            <img src="<%= libro.image %>" alt="<%= libro.titulo %>" class="object-contain self-center m-2 h-48 rounded-md duration-300 md:h-64 hover:scale-105">
+            <img src="<%= libro.image %>" alt="<%= libro.titulo %>" class="object-contain self-center m-2 mb-1 h-48 rounded-md duration-300 md:h-64 hover:scale-105">
             <% if (locals.userData) { %>
-               <a href="/dellink/<%= libro.dateAdded %>" class="text-xs text-center">[borrar]</a>
+               <a href="/dellink/<%= libro.dateAdded %>" class="self-center px-2 mt-0 mb-1 text-xs text-center rounded-md duration-300 hover:text-slate-700 bg-slate-500">borrar</a>
             <% } %>
          </div>
          
          <!-- TEXT AND GRAPH -->
          <div class="flex flex-col justify-between grow">
             <div class="flex flex-col justify-between items-center mx-2 my-1 md:flex-row md:items-start">
-               <a href="<%= libro.link %>" target="_blank" rel="noopener noreferrer"><h1 class="text-lg font-bold underline line-clamp-1 hover:font-black"><%= libro.title %></h1></a>
+               <a href="<%= libro.link %>" target="_blank"><h1 class="text-lg font-bold duration-300 hover:scale-105 line-clamp-1 hover:text-slate-700"><%= libro.title %></h1></a>
                <h2 class="text-lg font-semibold">$<%= libro.prices[libro.prices.length - 1].price %></h2>
             </div>
             <!-- GRAPH -->
@@ -44,7 +44,7 @@
 
 <%- include('includes/footer.ejs') %>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/chartjs/dist/chart.umd.js"></script>
 
 <script>
 

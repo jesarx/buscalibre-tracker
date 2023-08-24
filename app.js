@@ -28,6 +28,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: true })); // Parse incoming request bodies
 app.use(express.static('public')); // Serve static files (e.g. CSS files)
+app.use('/chartjs', express.static('node_modules/chart.js'));
+
 
 app.use(session({
    secret: 'super-secret',

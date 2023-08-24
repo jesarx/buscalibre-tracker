@@ -27,11 +27,16 @@ async function fetchBookData(link) {
       const html = response.data;
 
       const regexTitulo = /<p\s+class="tituloProducto">([^<]+)<\/p>/;
-      const regexImage = /https:\/\/images\.cdn\d+\.buscalibre\.com\/[^'"\s]+\.jpg/g;;
+      const regexImage = /https:\/\/images\.cdn\d+\.buscalibre\.com\/[^'"\s]+\.jpg/g;
+      const regexImageFail = /https:\/\/statics\.cdn\d+\.buscalibre\.com\/[^'"\s]+\.jpg/g;
 
-
+      let imagen ;
       const titulo = html.match(regexTitulo);
-      const imagen = html.match(regexImage);
+      imagen = html.match(regexImage);
+
+      if (!imagen || imagen === '') {
+         imagen = html.match(regexImageFail);
+      }
 
       if (!titulo) {
          throw new Error('Error al obtener el título del libro');

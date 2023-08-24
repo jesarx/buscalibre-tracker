@@ -1,7 +1,7 @@
 <!-- NAV BAR -->
 <nav id="nav" class="flex justify-between items-center p-3 text-sm text-white bg-slate-800">
    <div class="flex justify-start items-center w-1/6">
-      <a href="/">Inicio</a>
+      <a class="duration-300 hover:text-slate-400" href="/">Inicio</a>
    </div>
    <% if (locals.userData) { %>
       <form class="flex flex-col gap-2 justify-center items-center w-4/6 text-center md:w-[40rem] md:flex-row" id="blForm" action="/addlink" method="POST">
@@ -13,10 +13,10 @@
    
    <div class="flex flex-col gap-4 justify-end items-end w-1/6 md:flex-row">
       <% if (!locals.userData) { %>
-         <a href="/login">Login</a>
-         <a href="/signup">Signup</a>
+         <a class="duration-300 hover:text-slate-400" href="/login">Login</a>
+         <a class="duration-300 hover:text-slate-400" href="/signup">Signup</a>
       <% } else { %>
-         <a href="/logout">Logout</a>
+         <a class="duration-300 hover:text-slate-400" href="/logout">Logout</a>
       <% } %>
    </div>
 </nav>

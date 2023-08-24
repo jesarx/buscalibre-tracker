@@ -35,6 +35,28 @@ router.get('/', async function (req, res) {
    }
 
    if (!getData) {
+      getData = 
+      {
+         "_id": {
+           "$oid": ""
+         },
+         "email": "",
+         "password": "",
+         "books": [
+           {
+             "dateAdded": 1692898875890,
+             "link": "",
+             "title": "",
+             "image": "",
+             "prices": [
+               {
+                 "date": 11111,
+                 "price": ""
+               }
+             ]
+           }
+         ]
+      };
       return res.redirect('/signup');
    }
 
@@ -96,7 +118,7 @@ router.post('/addlink', async function(req, res) {
       }
    );
 
-   res.redirect('/');
+   res.redirect('/#footer');
 });
 
 // DELETE LINK
@@ -121,7 +143,6 @@ router.get('/dellink/:date', async function(req, res) {
       }
    );
 
-   console.log(deleteQuery);
    res.redirect('/');
 });
 
@@ -246,15 +267,18 @@ router.post('/signup', async function (req, res) {
 
    await db.getDb().collection('user-data').insertOne({
       email: email,
-      password: hashedPassword
-      "books": [
+      password: hashedPassword,
+      books: [
          {
-           "dateAdded": 1692898875890,
-           "link": "https://www.buscalibre.com.mx/libro-stoa-la/9789585165359/p/54362821",
-           "title": "STOA, LA",
-           "image": "https://images.cdn2.buscalibre.com/fit-in/360x360/96/a7/96a7ff4533b2865ddb30f1e9f0d73b7b.jpg",
-           "prices": [
-       
+           dateAdded: 1692910416422,
+           link: "https://www.buscalibre.com.mx/libro-textos-de-qumran/9788487699443/p/3069327",
+           title: "Textos de Qumran",
+           image: "https://images.cdn2.buscalibre.com/fit-in/360x360/bd/b2/bdb20bc47749da55e1e62489302068b1.jpg",
+           prices: [
+             {
+               date: 1692910416422,
+               price: "632"
+             }
            ]
          }
        ]
