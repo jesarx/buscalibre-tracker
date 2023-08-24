@@ -1,0 +1,23 @@
+<!-- NAV BAR -->
+<nav id="nav" class="flex justify-between items-center p-3 text-sm text-white bg-slate-800">
+   <div class="flex justify-start items-center w-1/6">
+      <a href="/">Inicio</a>
+   </div>
+   <% if (locals.userData) { %>
+      <form class="flex flex-col gap-2 justify-center items-center w-4/6 text-center md:w-[40rem] md:flex-row" id="blForm" action="/addlink" method="POST">
+         <label for="link" class="text-lg font-bold">Link:</label>
+         <input type="text" class="px-2 h-8 text-black rounded-md grow bg-slate-200" name="link" id="link" placeholder="https://www.buscalibre.com.mx/libro-..." >
+         <button type="submit" class="p-2 mx-0 rounded-md duration-300 bg-slate-500 hover:bg-slate-600">Añadir libro</button>
+      </form>   
+   <% } %>
+   
+   <div class="flex flex-col gap-4 justify-end items-end w-1/6 md:flex-row">
+      <% if (!locals.userData) { %>
+         <a href="/login">Login</a>
+         <a href="/signup">Signup</a>
+      <% } else { %>
+         <a href="/logout">Logout</a>
+      <% } %>
+   </div>
+</nav>
+<!-- /NAV BAR -->

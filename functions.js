@@ -10,7 +10,6 @@ async function fetchPrice(link) {
       const price = html.match(regex);
       const match = price[1];
       const matchNoComa = match.replace(',', '');
-      console.log(matchNoComa);
 
       if (matchNoComa) {
          return matchNoComa;

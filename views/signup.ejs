@@ -1,0 +1,27 @@
+<%- include('includes/head.ejs', { title: 'Rastreador de Buscalibre' }) %>
+<body>
+<%- include('includes/nav.ejs') %>
+
+<div class="flex overflow-auto flex-col gap-4 items-center py-3 h-screen bg-slate-300">
+   
+   <!-- CARD -->
+   <form method="POST" class="flex flex-col items-stretch text-center p-5 mt-20 gap-3 rounded-md bg-slate-400 w-3/4 md:w-[25rem]" action="/signup">
+      <% if (inputData.hasError) { %>
+         <p class="p-3 font-bold text-black bg-red-800 rounded-md"><%= inputData.message %></p>
+      <% } %>
+      <label for="link" class="text-lg font-bold">Email:</label>
+      <input type="email" class="px-2 h-8 text-black rounded-md grow bg-slate-200" name="email" id="email" placeholder="Ingresa tu dirección de email" value="<%= inputData.email %>">
+      <label for="link" class="text-lg font-bold">Confirma tu Email:</label>
+      <input type="email" class="px-2 h-8 text-black rounded-md grow bg-slate-200" name="emailConf" id="emailConf" placeholder="Confirma tu dirección de email" value="<%= inputData.emailConf %>">
+      <label for="link" class="text-lg font-bold">Contraseña:</label>
+      <input type="password" class="px-2 h-8 text-black rounded-md grow bg-slate-200" name="password" id="password" placeholder="Ingresa tu password" value="<%= inputData.password %>">
+      <button type="submit" class="p-2 mx-0 mt-5 rounded-md duration-300 bg-slate-500 hover:bg-slate-600">Registrarse</button>
+   </form> 
+   <!-- / CARD -->
+
+</div>
+
+<%- include('includes/footer.ejs') %>
+
+</body>
+</html>
