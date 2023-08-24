@@ -247,6 +247,17 @@ router.post('/signup', async function (req, res) {
    await db.getDb().collection('user-data').insertOne({
       email: email,
       password: hashedPassword
+      "books": [
+         {
+           "dateAdded": 1692898875890,
+           "link": "https://www.buscalibre.com.mx/libro-stoa-la/9789585165359/p/54362821",
+           "title": "STOA, LA",
+           "image": "https://images.cdn2.buscalibre.com/fit-in/360x360/96/a7/96a7ff4533b2865ddb30f1e9f0d73b7b.jpg",
+           "prices": [
+       
+           ]
+         }
+       ]
    });
 
    res.redirect('/login');
