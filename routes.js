@@ -60,6 +60,8 @@ router.get('/', async function (req, res) {
       return res.redirect('/signup');
    }
 
+   getData.books.sort((a, b) => b.dateAdded - a.dateAdded);
+
    res.render('main', {libros: getData.books, f: f, inputData: inputData});
 });
 
@@ -118,7 +120,7 @@ router.post('/addlink', async function(req, res) {
       }
    );
 
-   res.redirect('/#footer');
+   res.redirect('/');
 });
 
 // DELETE LINK
