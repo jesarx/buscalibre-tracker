@@ -88,26 +88,19 @@ db.connectToDatabase().then(function() {
           {
             books: {
               $elemMatch: {
-                'link': link,
-                'prices': {
-                  $not: {
-                    $elemMatch: {
-                      $eq: {
-                        price: price,
-                        date: { $type: 'date' }
-                      }
-                    }
-                  }
-                }
+                'link': link
               }
             }
           },
           {
             $push: {
               'books.$[elem].prices': {
-                date: new Date(),
-                price: price
+                $each: [{
+                  date: Date.now(),
+                  price: price
+                }]
               }
+
             }
           },
           {
