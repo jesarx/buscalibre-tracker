@@ -5,7 +5,7 @@ async function fetchPrice(link) {
     const response = await axios.get(link);
     const html = response.data;
 
-    const regex = /<strong class="precio">\$\s*(\d+\.\d{2})<\/strong>/;
+    const regex = /<strong class="precio">\$\s*(\d{1,3}(?:,\d{3})*\.\d{2})<\/strong>/;
 
     const price = html.match(regex);
     const match = price[1];
