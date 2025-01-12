@@ -41,7 +41,7 @@ app.use(session({
   }
 }));
 
-app.use(async function(req, res, next) {
+app.use(async function (req, res, next) {
   const user = req.session.user;
 
   if (!user) {
@@ -59,14 +59,14 @@ app.use(async function(req, res, next) {
 
 app.use(appRoutes);
 
-app.use(function(error, req, res, next) {
+app.use(function (error, req, res, next) {
   // Default error handling function
   // Will become active whenever any route / middleware crashes
   console.log(error);
   res.status(500);
 });
 
-db.connectToDatabase().then(function() {
+db.connectToDatabase().then(function () {
   app.listen(3000);
   console.log('App listening on port 3000!');
 
