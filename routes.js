@@ -60,12 +60,9 @@ router.get('/', async function (req, res) {
     return res.redirect('/signup');
   }
 
+  getData.books.sort((a, b) => b.dateAdded - a.dateAdded);
 
-
-  const sortedBooks = getData.books.sort((a, b) => b.dateAdded - a.dateAdded);
-  const last100Books = sortedBooks.slice(-10);
-
-  res.render('main', { libros: last100Books, f: f, inputData: inputData });
+  res.render('main', { libros: getData.books, f: f, inputData: inputData });
 });
 
 // ADD LINK
