@@ -51,7 +51,7 @@
    <% for (const libro of libros) { %>
       const ctx<%= escape(libro.dateAdded) %> = document.getElementById('chart<%= libro.dateAdded %>');
       
-      <% libro.prices = libro.prices.slice(-100); %>
+      <% libro.prices = libro.prices.slice(-50); %>
       <% libro.prices.sort((a, b)=> b.date + a.date); %>
       let unix<%= libro.dateAdded %> = <%= JSON.stringify(libro.prices.map(field => field.date)); %>
       const human<%= libro.dateAdded %> = unix<%= libro.dateAdded %>.map(timestamp => {
