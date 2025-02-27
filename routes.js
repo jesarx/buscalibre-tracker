@@ -63,7 +63,7 @@ router.get('/', async function (req, res) {
 
 
   const sortedBooks = getData.books.sort((a, b) => b.dateAdded - a.dateAdded);
-  const last100Books = sortedBooks.slice(-100);
+  const last100Books = sortedBooks.slice(-10);
 
   res.render('main', { libros: last100Books, f: f, inputData: inputData });
 });
